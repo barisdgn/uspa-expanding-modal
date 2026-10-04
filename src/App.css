@@ -1,0 +1,899 @@
+:root {
+  /* --- 01. TOKENS & VARIABLES --- */
+  --uspa-navy: #17294d;
+  --uspa-blue: #294986;
+  --uspa-red: #c8102e;
+  --white: #ffffff;
+  --light-gray: #eeeeee;
+  --border: #d8dce3;
+}
+
+/* --- 02. BASE & RESET --- */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--white);
+}
+
+button {
+  font: inherit;
+}
+
+/* --- 03. LAYOUT --- */
+.demo-page {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.demo-content {
+  min-height: calc(100vh - 86px);
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.demo-content p {
+  margin: 0;
+  color: #777777;
+  font-size: 28px;
+}
+
+/* --- 04. COMPONENTS: HEADER --- */
+.site-header {
+  width: 100%;
+  background: var(--white);
+  color: var(--uspa-navy);
+}
+
+.header-main {
+  width: 100%;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+
+/* Header: Left Action Group */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex: 1;
+}
+
+.menu-button {
+  width: 24px;
+  height: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.menu-button span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: var(--uspa-navy);
+}
+
+.site-logo {
+  height: 42px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.site-logo img {
+  display: block;
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Header: Search Component */
+.header-center {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.search-box {
+  width: 100%;
+  max-width: 580px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--uspa-navy);
+  border-radius: 2px;
+  background: var(--white);
+}
+
+.search-icon,
+.search-camera {
+  width: 45px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.search-icon svg,
+.search-camera svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: var(--uspa-navy);
+  stroke-width: 1.2;
+}
+
+.search-box input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--uspa-navy);
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.search-box input::placeholder {
+  color: #a0a6b1;
+}
+
+/* Component Overrides: Desktop Visibility */
+.mobile-search-button,
+.mobile-account-button {
+  display: flex !important;
+}
+
+/* Header: User Actions Group */
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 30px;
+  flex: 1;
+}
+
+.login-text-button {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--uspa-navy);
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+}
+
+.icon-button {
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--uspa-navy);
+  cursor: pointer;
+}
+
+.icon-button svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: var(--uspa-navy);
+  stroke-width: 1.2;
+}
+
+.cart-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cart-count {
+  position: static;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--uspa-navy);
+  background: transparent;
+}
+
+/* Header: Brand Styling Accents */
+.header-lines {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.red-line {
+  width: 100%;
+  height: 3px;
+  background: var(--uspa-red);
+}
+
+.navy-line {
+  width: 100%;
+  height: 6px;
+  background: var(--uspa-navy);
+  border-top: 3px solid var(--white);
+}
+
+/* --- 05. COMPONENTS: CAMPAIGN BAR --- */
+.campaign-bar {
+  --slide-height: 16px;
+  position: fixed;
+  z-index: 1000;
+  left: 30px;
+  bottom: 30px;
+  width: 277px;
+  height: 51px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  color: var(--white);
+  background: var(--uspa-blue);
+  cursor: pointer;
+  overflow: hidden;
+  animation: slideUp 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bar-close {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px 0 0;
+  padding: 0;
+  border: 0;
+  color: var(--white);
+  background: transparent;
+  font-size: 21px;
+  font-weight: 300;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.campaign-text {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.campaign-slider {
+  width: 100%;
+  height: var(--slide-height);
+  overflow: hidden;
+}
+
+.campaign-track {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.campaign-slide {
+  width: 100%;
+  height: var(--slide-height);
+  min-height: var(--slide-height);
+  line-height: var(--slide-height);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.expand-arrow {
+  flex: 0 0 auto;
+  margin-left: 10px;
+  color: var(--white);
+  font-size: 15px;
+  line-height: 1;
+}
+
+/* --- 06. COMPONENTS: CAMPAIGN MODAL --- */
+.campaign-modal {
+  position: fixed;
+  z-index: 1100;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  transform: none;
+  background: var(--white);
+  overflow: hidden;
+  box-shadow: none;
+  border-radius: 0;
+  animation: modalUp 0.45s ease-out;
+}
+
+.campaign-modal .banner-grid {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1220px;
+  height: 560px;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--white);
+  z-index: 1050;
+  cursor: pointer;
+}
+
+.modal-close {
+  position: absolute;
+  top: 35px;
+  right: 35px;
+  z-index: 10;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--uspa-navy);
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 30px;
+  cursor: pointer;
+}
+
+.modal-logo {
+  position: absolute;
+  z-index: 5;
+  top: 38px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.modal-logo img {
+  display: block;
+  width: 200px;
+  object-fit: contain;
+}
+
+/* Component Overrides: Mobile Visibility */
+.campaign-header {
+  display: none;
+}
+
+/* --- 07. COMPONENTS: CAMPAIGN CARDS --- */
+.banner-grid {
+  position: absolute;
+  left: 50%;
+  top: 180px;
+  transform: translateX(-50%);
+  width: 1220px;
+  height: 560px;
+  display: grid;
+  grid-template-columns: 600px 600px;
+  grid-template-rows: 270px 270px;
+  column-gap: 20px;
+  row-gap: 20px;
+  overflow: visible;
+}
+
+.campaign-card {
+  width: 600px;
+  height: 270px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  overflow: hidden;
+  border-radius: 3px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.16);
+  z-index: 1;
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.campaign-card h3 {
+  max-width: 320px;
+  margin: 0 0 10px;
+  color: var(--uspa-navy);
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 700;
+  text-align: center;
+}
+
+.campaign-card p {
+  max-width: 320px;
+  margin: 0;
+  color: #4b4b4b;
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.copy-button {
+  min-width: 110px;
+  height: 34px;
+  margin-top: 18px;
+  border: 0;
+  background: var(--white);
+  color: var(--uspa-navy);
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.copy-button:hover {
+  background: #f7f7f7;
+}
+
+.copy-button.is-copied {
+  color: var(--white);
+  background: var(--uspa-navy);
+}
+
+/* --- 08. ANIMATIONS & KEYFRAMES --- */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(70px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes modalUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 50px));
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes slideUpMobile {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUpSheet {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- 09. MEDIA QUERIES: MOBILE RESPONSIVE --- */
+@media (max-width: 767px) {
+  
+  /* Layout: Header Structural Overrides */
+  .site-header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header-lines {
+    order: -1;
+  }
+
+  .header-main {
+    height: 60px;
+    padding: 0 15px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .menu-button {
+    width: 22px;
+    height: 16px;
+    margin: 0;
+  }
+
+  .site-logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: auto;
+    margin: 0;
+  }
+
+  .site-logo img {
+    width: 150px;
+  }
+
+  /* Component Visibility Overrides */
+  .header-center,
+  .search-box,
+  .account-button,
+  .login-text-button,
+  .favorite-button {
+    display: none !important;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .icon-button {
+    width: auto;
+    height: auto;
+  }
+
+  .icon-button svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Header: Mobile Cart Styling */
+  .cart-button {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 6px;
+  }
+
+  .cart-count {
+    position: static;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--uspa-navy);
+    background: transparent;
+  }
+
+  /* Header: Mobile Brand Lines */
+  .red-line {
+    height: 4px;
+  }
+
+  .navy-line {
+    height: 6px;
+  }
+
+  /* Components: Mobile Campaign Bar (Bottom Fix) */
+  .campaign-bar {
+    --slide-height: 22px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    padding: 0 15px;
+    justify-content: space-between;
+    animation: slideUpMobile 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    background: var(--white);
+    color: var(--uspa-navy);
+    border-top: 1px solid var(--uspa-navy);
+  }
+
+  .bar-close {
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    font-size: 28px;
+    font-weight: 300;
+    z-index: 2;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: var(--uspa-navy);
+  }
+
+  .expand-arrow {
+    width: 30px;
+    font-size: 20px;
+    margin: 0;
+    z-index: 2;
+    position: relative;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: var(--uspa-navy);
+  }
+
+  .campaign-text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 45px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .campaign-slider {
+    width: 100%;
+    height: var(--slide-height);
+    overflow: hidden;
+  }
+
+  .campaign-track {
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .campaign-slide {
+    width: 100%;
+    height: var(--slide-height);
+    min-height: var(--slide-height);
+    line-height: var(--slide-height);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  /* Components: Mobile Modal (Bottom Sheet Design) */
+  .campaign-modal {
+    position: fixed;
+    z-index: 1100;
+    width: 100%;
+    height: auto;
+    max-height: 85vh;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    transform: none;
+    border-radius: 16px 16px 0 0;
+    background: var(--white);
+    overflow: visible;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    animation: slideUpSheet 0.35s ease-out;
+  }
+
+  .campaign-modal .banner-grid {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    height: auto;
+  }
+
+  .modal-logo,
+  .modal-close {
+    display: none;
+  }
+
+  /* Components: Mobile Modal Header */
+  .campaign-header {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-bottom: 1px solid #dfe2e7;
+    background: var(--white);
+    border-radius: 16px 16px 0 0;
+    color: var(--uspa-navy);
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex: 1;
+  }
+
+  .mobile-header-close {
+    font-size: 26px;
+    font-weight: 300;
+    color: var(--uspa-navy);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .campaign-header strong {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--uspa-navy);
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
+    flex: 1;
+  }
+
+  .view-all {
+    font-size: 13px;
+    text-decoration: underline;
+    color: var(--uspa-navy);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .header-collapse {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: var(--uspa-navy);
+    margin-left: 8px;
+  }
+
+  .header-collapse svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .arrow-down {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-bottom: 2px solid var(--uspa-navy);
+    border-right: 2px solid var(--uspa-navy);
+    transform: rotate(45deg);
+    margin-bottom: 4px;
+  }
+
+  /* Layout: Mobile Horizontal Scroll Grid */
+  .banner-grid {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    padding: 20px 20px 40px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .banner-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Components: Mobile Cards */
+  .campaign-card {
+    flex: 0 0 175px;
+    width: 175px;
+    height: 175px;
+    min-height: 175px;
+    padding: 15px;
+    scroll-snap-align: start;
+    border-radius: 6px;
+    background-position: center;
+    background-size: cover;
+    background-color: var(--uspa-blue);
+  }
+
+  .card-overlay {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .card-content {
+    max-width: 100%;
+  }
+
+  .campaign-card h3 {
+    font-size: 14px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    color: var(--white);
+  }
+
+  .campaign-card p {
+    font-size: 11px;
+    line-height: 1.3;
+    color: var(--white);
+  }
+
+  .copy-button {
+    min-width: 100px;
+    height: 32px;
+    margin-top: 10px;
+    font-size: 10px;
+    border-radius: 4px;
+  }
+}
